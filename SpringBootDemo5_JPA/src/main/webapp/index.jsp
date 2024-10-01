@@ -53,17 +53,33 @@
 	          
 	          
 	          <button style="margin-top:4vh;margin-left:40vw" class="btn btn-danger">add</button>
+	         
 	       </form>
-	      
-	       <div  class="container">
-	        <span style="color:blue"><b>${message}</b></span>
+	       
 	       <hr/>
-	       <table class="table table-striped">
+	       <form action="/search">
+	       <input style="width:40vw;margin-left:7.5vw" type="text" name="search" placeholder="Enter the product ID"/>
+	       <button style="margin-left:7.5vw" class="btn btn-success">Search</button>
+	       </form>
+	         <form action="/Page" action="get">
+	       <button style="margin-left:7.5vw" class="btn btn-primary mt-2">clear</button>
+	      
+	      
+	        <br>
+	          <img style="height:60vh;margin-left:50vw" src="api/chart"/>
+	      </form>
+	     
+	      	<div  class="container">
+	      	 
+	        <span style="color:blue"><b>${message}</b></span>
+	       <table class="table table-striped mt-4">
 	       <thead>
 	           <tr>
 	                <th>ID</th>
-	                <th>Product Name</th>
-	                <th>Category</th>
+	                <th>
+	                <a href="sorting?sortBy=product&orderBy=${orderBy}"> Product Name</a>
+	                </th>
+	                <th><a href="sorting?sortBy=category&orderBy=${orderBy}">Category</a></th>
 	 				<th>Price</th>
 	 				<th>Photo</th> 
 	 				<th>Action</th>               

@@ -1,6 +1,9 @@
 package com.springBoot.Bean;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.config.DefaultRepositoryBaseClass;
@@ -14,13 +17,11 @@ public class ProgramClass {
  
 	@Autowired
 	RepositoryClass repobj;
+	
+	
 		
-	public void add(String product,String Category,double price,String photo) {
-		EntityClass eobj = new EntityClass();
-		eobj.setProduct(product);
-		eobj.setCategory(Category);
-		eobj.setPrice(price);
-		eobj.setPhoto(photo);
+	public void add(EntityClass eobj) {
+		
 		repobj.save(eobj);
 	}
 	
@@ -34,5 +35,30 @@ public class ProgramClass {
 		repobj.deleteById(id);
 		List<EntityClass> listobj = repobj.findAll();
 		return listobj;
+	}
+	
+	public List<EntityClass>  search(Integer id){
+		 return List.of(repobj.findById(id).get());
+		
+	}
+	
+	public List<EntityClass>  sort(String input,String order){
+		List<EntityClass> listobj = repobj.findAll();
+		 Comparator<EntityClass> comparator = null;
+		switch(input) {
+		case "product": 
+			comparator = Comparator.comparing(EntityClass::getProduct, String.CASE_INSENSITIVE_ORDER);
+		case "category": 
+			comparator = Comparator.comparing(EntityClass::getCategory, String.CASE_INSENSITIVE_ORDER);
+		}
+		if(order.equals("asc")) {
+			
+		Collections.sort(listobj,comparator);}
+		else {
+			Collections.sort(listobj,comparator.reversed());
+		}
+		
+		return listobj;
+		
 	}
 }
