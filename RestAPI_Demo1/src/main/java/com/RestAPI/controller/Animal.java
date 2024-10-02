@@ -1,16 +1,36 @@
 package com.RestAPI.controller;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
+
+
 public class Animal {
 	
 	String name;
 	Double weight;
+	int id;
 	
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Animal(String name, Double weight, int id) {
+		super();
+		this.name = name;
+		this.weight = weight;
+		this.id = id;
+	}
+
 	public Animal() {}
 	
 	@Override
 	public String toString() {
-		return "Animal [name=" + name + ", weight=" + weight + "]";
+		return "Animal [name=" + name + ", weight=" + weight + ", id=" + id + "]";
 	}
 	
 	
