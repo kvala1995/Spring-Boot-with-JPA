@@ -3,6 +3,9 @@ package com.RestAPI.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,9 +54,16 @@ public class restController {
 	//201 --created
 	//json objects are passed as parameters to create animal obj here
 	@PostMapping("/animal")
-	public Animal createAnimal(@RequestBody Animal anobj) {
+	public ResponseEntity<Animal> createAnimal(@RequestBody Animal anobj) {
 		Animal aNobj = animalserviceObj.save(anobj);
-		return aNobj;
+		return new ResponseEntity<Animal>(aNobj,HttpStatus.CREATED);
+	} 
+	
+	@DeleteMapping("/animal/{id}")
+	public ResponseEntity<Void> deleteID(@PathVariable int id){
+		animalserviceObj.deleteId(id);
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		
 	}
 
 }

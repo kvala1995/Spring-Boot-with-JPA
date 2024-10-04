@@ -39,4 +39,12 @@ public class AnimalServiceClass {
 		}
 		return result;
 	}
+	
+	
+	public void deleteId(int id) {
+		EntityClass eobj = new EntityClass();
+		repobj.deleteById(id);
+		repobj.save(eobj);
+	}
+	
 }
